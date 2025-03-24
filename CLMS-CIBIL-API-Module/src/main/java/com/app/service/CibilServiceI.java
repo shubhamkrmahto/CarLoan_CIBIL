@@ -8,4 +8,6 @@ public interface CibilServiceI {
 
 	public CibilEntity getSingleData(Integer id);
 
+	public CibilEntity save(String ce);
+	
 }

@@ -42,9 +42,5 @@ public class CibilServiceImpl implements CibilServiceI {
 		return null;
 	}
 
-	private void readValue(String ce, Class<CibilEntity> class1) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -36,27 +36,14 @@ public class CibilServiceImpl implements CibilServiceI {
 		}
 		return null;	
 	}
-	public CibilEntity save(String ce) {
+	public CibilEntity save(CibilEntity ce) {
 		
 		// TODO Auto-generated method stub
 		
-		ObjectMapper om = new ObjectMapper();
 		
-		CibilEntity cibilDetails;
-		try {
-			cibilDetails = om.readValue(ce, CibilEntity.class);
-			cibilDetails.setStatus(CibilStatusEnum.PENDING);
-			cibilDetails.setCibilScoreDateTime(LocalDateTime.now());
-			return cibilRepo.save(cibilDetails);
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
+			ce.setStatus(CibilStatusEnum.PENDING);
+			ce.setCibilScoreDateTime(LocalDateTime.now());
+			return cibilRepo.save(ce);
 	}
 
 

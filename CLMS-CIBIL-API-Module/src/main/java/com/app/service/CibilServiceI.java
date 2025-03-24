@@ -8,6 +8,9 @@ public interface CibilServiceI {
 
 	public CibilEntity getSingleData(Integer id);
 
-	public CibilEntity save(String ce);
+
+	String updateCibil(CibilEntity cibil);
+
+	public CibilEntity save(CibilEntity ce);
 	
 }

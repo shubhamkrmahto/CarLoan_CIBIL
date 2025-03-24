@@ -2,12 +2,12 @@ package com.app.serviceimpl;
 
 import java.util.Optional;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.entity.CibilEntity;
+
 import com.app.enums.CibilStatusEnum;
 import com.app.repo.CibilRepository;
 import com.app.service.CibilServiceI;
@@ -34,27 +34,30 @@ public class CibilServiceImpl implements CibilServiceI {
 	}
 
 	
-	public CibilEntity save(String ce) {
+
+	public String updateCibil(CibilEntity cibil) {
 		
-		// TODO Auto-generated method stub
+		Optional<CibilEntity> byId = cibilRepo.findById(cibil.getCibilId());
 		
-		ObjectMapper om = new ObjectMapper();
-		
-		CibilEntity cibilDetails;
-		try {
-			cibilDetails = om.readValue(ce, CibilEntity.class);
-			cibilDetails.setStatus(CibilStatusEnum.PENDING);
-			cibilDetails.setCibilScoreDateTime(LocalDateTime.now());
-			return cibilRepo.save(cibilDetails);
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (byId.isPresent()) {
+			CibilEntity entity = byId.get();
+			entity.setCibilScore(cibil.getCibilScore());
+			entity.setCibilScoreDateTime(cibil.getCibilScoreDateTime());
+			entity.setStatus(cibil.getStatus());
+			entity.setCibilRemark(cibil.getCibilRemark());
+			
+			cibilRepo.save(entity);
+			
+			return "Data Updated Successfully";
 		}
+		return null;	
+	}
+	public CibilEntity save(CibilEntity ce) {
 		
-		return null;
+		
+			ce.setStatus(CibilStatusEnum.PENDING);
+			ce.setCibilScoreDateTime(LocalDateTime.now());
+			return cibilRepo.save(ce);
 	}
 
 

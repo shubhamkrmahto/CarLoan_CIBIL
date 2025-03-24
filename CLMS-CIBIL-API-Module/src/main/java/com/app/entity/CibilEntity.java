@@ -1,6 +1,5 @@
 package com.app.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.app.enums.CibilStatusEnum;
@@ -30,8 +29,5 @@ public class CibilEntity {
 	@Enumerated(EnumType.STRING)
 	private CibilStatusEnum status;
 	private String cibilRemark;
-	
-	
-	
 
 }

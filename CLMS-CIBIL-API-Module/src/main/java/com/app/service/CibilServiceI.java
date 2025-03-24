@@ -7,6 +7,6 @@ public interface CibilServiceI {
 
 	String updateCibil(CibilEntity cibil);
 
-	public CibilEntity save(String ce);
+	public CibilEntity save(CibilEntity ce);
 	
 }

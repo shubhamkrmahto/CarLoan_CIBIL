@@ -31,9 +31,6 @@ public class CibilEntity {
 	@Enumerated(EnumType.STRING)
 	private CibilStatusEnum status;
 	private String cibilRemark;
-	
-//	
-//	"cibilScore":700,
-//	"cibilRemark":"Request sent to CRM".
+
 
 }

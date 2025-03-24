@@ -4,6 +4,9 @@ import com.app.entity.CibilEntity;
 
 public interface CibilServiceI {
 
+
+	String updateCibil(CibilEntity cibil);
+
 	public CibilEntity save(String ce);
 	
 }

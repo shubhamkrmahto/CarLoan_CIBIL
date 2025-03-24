@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -27,6 +28,13 @@ public class CibilController {
 		
 		return new ResponseEntity<String>("Your Cibil Data has been Registered Successfully.", HttpStatus.CREATED);  
 	}
+	 @PutMapping("/update-cibil")	
+	   public ResponseEntity<String> updateCibilDetails(@RequestBody CibilEntity cibil){
+		   String msg = service.updateCibil(cibil);
+		   
+		   return new ResponseEntity<String>(msg,HttpStatus.OK);
+		   
+	   }
 	
 
 }

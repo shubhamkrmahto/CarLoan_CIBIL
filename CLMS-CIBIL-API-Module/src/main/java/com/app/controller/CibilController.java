@@ -28,7 +28,7 @@ public class CibilController {
 		
 		return new ResponseEntity<String>("Your Cibil Data has been Registered Successfully.", HttpStatus.CREATED);  
 	}
-	 @PutMapping("/update-cibil")	
+	 @PutMapping("/updatecibil")	
 	   public ResponseEntity<String> updateCibilDetails(@RequestBody CibilEntity cibil){
 		   String msg = service.updateCibil(cibil);
 		   

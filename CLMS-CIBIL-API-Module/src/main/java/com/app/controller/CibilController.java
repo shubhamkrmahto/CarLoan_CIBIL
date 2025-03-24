@@ -20,7 +20,7 @@ public class CibilController {
 	CibilServiceI service;
 	
 	@PostMapping("/saveCibil")
-	public ResponseEntity<String> saveCibilData(@RequestPart("Cibil Details") String ce)
+	public ResponseEntity<String> saveCibilData(@RequestBody CibilEntity  ce)
 	{
 		
 		CibilEntity cibil = service.save(ce);

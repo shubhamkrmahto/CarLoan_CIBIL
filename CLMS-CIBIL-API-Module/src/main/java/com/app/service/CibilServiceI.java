@@ -4,6 +4,9 @@ import com.app.entity.CibilEntity;
 
 public interface CibilServiceI {
 
+	public Iterable<CibilEntity> findAll();
+
+	public CibilEntity getSingleData(Integer id);
 
 	String updateCibil(CibilEntity cibil);
 

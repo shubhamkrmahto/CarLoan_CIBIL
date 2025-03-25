@@ -3,6 +3,8 @@ package com.app.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +44,15 @@ public class CibilController {
 		   
 	   }
 
+	
+	@DeleteMapping("/deleteCibilEnquiry/{id}")
+	 public ResponseEntity<String> deleteCibilData(@PathVariable ("id") Integer id)
+	 {
+			service.deleteCibilEnquiry(id);
+			return new ResponseEntity<String>("Delete Your cibil Field Successfully...!",HttpStatus.OK);
+
+	 }
+
 	 
 	 @PatchMapping("change_CibilStatus/{cibilId}/{status}")
 	 public ResponseEntity<CibilEntity> onChangeCibilStatus(@PathVariable ("cibilId")Integer cibilId,
@@ -60,9 +71,7 @@ public class CibilController {
 	 
 	 {
 		 CibilEntity cibilEntity=service.updateCibilScore(cibilId,cibilScore);
-		 return new ResponseEntity<CibilEntity>(cibilEntity,HttpStatus.OK);
-		 
-	
+		 return new ResponseEntity<CibilEntity>(cibilEntity,HttpStatus.OK);	
 	 }
 	 
 	 @PatchMapping("change_cibilScore_remark/{cibilId}/{cibilRemark}")
@@ -72,10 +81,7 @@ public class CibilController {
 	 {
 		 CibilEntity cibilEntity=service.updateCibilRemark(cibilId,cibilRemark);
 		 return new ResponseEntity<CibilEntity>(cibilEntity,HttpStatus.OK);
-		 
-	
 	 }
-	 
 
 	 
 	 @GetMapping("/getCibilAllData")

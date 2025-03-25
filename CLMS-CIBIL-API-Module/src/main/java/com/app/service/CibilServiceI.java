@@ -18,4 +18,9 @@ public interface CibilServiceI {
 
 	void deleteCibilEnquiry(Integer id);
 	
+	
+	public Iterable<CibilEntity> findAll();
+
+	public CibilEntity getSingleData(Integer id);
+	
 }

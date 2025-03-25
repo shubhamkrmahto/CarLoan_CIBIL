@@ -104,7 +104,20 @@ public class CibilServiceImpl implements CibilServiceI {
 		}
 	
 	
-	
+
+	@Override
+	public Iterable<CibilEntity> findAll() {
+		
+		
+		return cibilRepo.findAll();
+	}
+
+	@Override
+	public CibilEntity getSingleData(Integer id) {
+		Optional<CibilEntity> cibilById = cibilRepo.findById(id);
+		
+		return cibilById.get();
+	}
 	
 	
 	

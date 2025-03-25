@@ -53,6 +53,15 @@ public class CibilServiceImpl implements CibilServiceI {
 			ce.setCibilScoreDateTime(LocalDateTime.now());
 			return cibilRepo.save(ce);
 	}
+	@Override
+	public void deleteCibilEnquiry(Integer id) {
+		// TODO Auto-generated method stub
+		
+			cibilRepo.deleteById(id);		
+		}
+		
+		
+	}
 
 
-}
+

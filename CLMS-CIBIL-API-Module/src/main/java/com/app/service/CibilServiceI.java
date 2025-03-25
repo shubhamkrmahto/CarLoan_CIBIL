@@ -11,5 +11,7 @@ public interface CibilServiceI {
 	String updateCibil(CibilEntity cibil);
 
 	public CibilEntity save(CibilEntity ce);
+
+	void deleteCibilEnquiry(Integer id);
 	
 }

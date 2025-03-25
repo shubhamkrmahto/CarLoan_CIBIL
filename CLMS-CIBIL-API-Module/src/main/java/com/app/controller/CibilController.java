@@ -38,8 +38,6 @@ public class CibilController {
 		   
 	   }
 	
-	
-
 	@GetMapping("/getCibilAllData")
 	public ResponseEntity<Iterable<CibilEntity>> getAllData()
 	{
@@ -52,17 +50,14 @@ public class CibilController {
 	public ResponseEntity<CibilEntity> getSingleData(@PathVariable("cibilId")Integer id)
 	{
 		CibilEntity cibil=service.getSingleData(id);
-		
 		return new ResponseEntity<CibilEntity>(cibil, HttpStatus.OK);
 	}
 
-		@DeleteMapping("/deleteCibilEnquiry/{id}")
+	@DeleteMapping("/deleteCibilEnquiry/{id}")
 	 public ResponseEntity<String> deleteCibilData(@PathVariable ("id") Integer id)
 	 {
 			service.deleteCibilEnquiry(id);
 			return new ResponseEntity<String>("Delete Your cibil Field Successfully...!",HttpStatus.OK);
 
 	 }
-
-
 }

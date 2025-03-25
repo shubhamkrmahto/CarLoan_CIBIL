@@ -16,4 +16,9 @@ public interface CibilServiceI {
 
 	public CibilEntity updateCibilRemark(Integer cibilId, String cibilRemark);
 	
+	
+	public Iterable<CibilEntity> findAll();
+
+	public CibilEntity getSingleData(Integer id);
+	
 }

@@ -1,7 +1,10 @@
 package com.app.serviceimpl;
+
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,72 +16,79 @@ import com.app.service.CibilServiceI;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Service
 public class CibilServiceImpl implements CibilServiceI {
+
+	private static final Logger log = LoggerFactory.getLogger(CibilServiceImpl.class);
+
 	@Autowired
 	CibilRepository cibilRepo;
 
 	@Override
 	public String updateCibil(CibilEntity cibil) {
-		
+
 		Optional<CibilEntity> byId = cibilRepo.findById(cibil.getCibilId());
-		
+
 		if (byId.isPresent()) {
 			CibilEntity entity = byId.get();
 			entity.setCibilScore(cibil.getCibilScore());
 			entity.setCibilScoreDateTime(cibil.getCibilScoreDateTime());
 			entity.setStatus(cibil.getStatus());
 			entity.setCibilRemark(cibil.getCibilRemark());
-			
+
 			cibilRepo.save(entity);
-			
+
+			log.info("Cibil Data has been updated successfully for Cibil id = " + cibil.getCibilId());
+
 			return "Data Updated Successfully";
 		}
-		return null;	
-	}
-	
-	@Override
-	public CibilEntity save(CibilEntity ce) {
-			
-		
-			ce.setStatus(CibilStatusEnum.PENDING);
-			ce.setCibilScoreDateTime(LocalDateTime.now());
-			return cibilRepo.save(ce);
+		return null;
 	}
 
+	@Override
+	public CibilEntity save(CibilEntity ce) {
+
+		ce.setStatus(CibilStatusEnum.PENDING);
+		ce.setCibilScoreDateTime(LocalDateTime.now());
+
+		log.info("Cibil Data has been saved successfully and Cibil id is : " + ce.getCibilId());
+		return cibilRepo.save(ce);
+	}
 
 	@Override
 	public CibilEntity updateCibilScore(Integer cibilId, Integer cibilScore) {
-		
+
 		Optional<CibilEntity> byId = cibilRepo.findById(cibilId);
 
 		if (byId.isPresent()) {
-			  
-			CibilEntity cibilEntity=byId.get();
+
+			CibilEntity cibilEntity = byId.get();
 			cibilEntity.setCibilScore(cibilScore);
-		 return 	cibilRepo.save(cibilEntity);
-			
+			log.info("Cibil Score has been updated successfully , for this id = " + cibilId);
+
+			return cibilRepo.save(cibilEntity);
 
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public CibilEntity updateCibilScoreStatus(Integer cibilId, CibilStatusEnum status) {
 
-		
 		Optional<CibilEntity> byId = cibilRepo.findById(cibilId);
 
 		if (byId.isPresent()) {
-			  
-			CibilEntity cibilEntity=byId.get();
+
+			CibilEntity cibilEntity = byId.get();
 			cibilEntity.setStatus(status);
-		 return 	cibilRepo.save(cibilEntity);
-			
+			log.info("Cibil CibilScoreStatus has been updated successfully , for this id = " + cibilId);
+
+			return cibilRepo.save(cibilEntity);
+
 		}
-		
-		
+
 		return null;
 	}
 
@@ -87,37 +97,31 @@ public class CibilServiceImpl implements CibilServiceI {
 		Optional<CibilEntity> byId = cibilRepo.findById(cibilId);
 
 		if (byId.isPresent()) {
-			  
-			CibilEntity cibilEntity=byId.get();
+
+			CibilEntity cibilEntity = byId.get();
 			cibilEntity.setCibilRemark(cibilRemark);
-		 return 	cibilRepo.save(cibilEntity);
+
+			log.info("Cibil CibilRemark has been updated successfully , for this id = " + cibilId);
+
+			return cibilRepo.save(cibilEntity);
 		}
 		return null;
 	}
-	
-	
-	
 
 	@Override
 	public Iterable<CibilEntity> findAll() {
-		
-		
+
+		log.info(" GET All DATA successfully ");
 		return cibilRepo.findAll();
 	}
 
 	@Override
 	public CibilEntity getSingleData(Integer id) {
 		Optional<CibilEntity> cibilById = cibilRepo.findById(id);
-		
+
+		log.info(" GET SINGLE DATA successfully for Cibil id = " + id);
+
 		return cibilById.get();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

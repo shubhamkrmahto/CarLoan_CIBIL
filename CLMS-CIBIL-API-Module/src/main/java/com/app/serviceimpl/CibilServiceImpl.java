@@ -114,7 +114,9 @@ public class CibilServiceImpl implements CibilServiceI {
 	public void deleteCibilEnquiry(Integer id) {
 		// TODO Auto-generated method stub
 		
-			cibilRepo.deleteById(id);		
+			cibilRepo.deleteById(id);
+			log.info("Cibil has been Deleted for Cibil id : " + id);
+			
 		}
 	
 	

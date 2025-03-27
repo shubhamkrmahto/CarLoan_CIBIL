@@ -92,6 +92,8 @@ public class CibilController {
 	@DeleteMapping("/deleteCibilEnquiry/{id}")
 	 public ResponseEntity<String> deleteCibilData(@PathVariable ("id") Integer id)
 	 {
+		
+			log.info("Cibil DELETE method called...!");
 			service.deleteCibilEnquiry(id);
 			return new ResponseEntity<String>("Delete Your cibil Field Successfully...!",HttpStatus.OK);
 
@@ -101,7 +103,7 @@ public class CibilController {
 	@GetMapping("/getCibilAllData")
 	public ResponseEntity<Iterable<CibilEntity>> getAllData() {
 	
-log.info("Cibil GETALL METHOD called");
+		log.info("Cibil GETALL METHOD called");
 		
 		Iterable<CibilEntity> allData = service.findAll();
 
@@ -113,6 +115,8 @@ log.info("Cibil GETALL METHOD called");
 			                                               @PathVariable ("status")CibilStatusEnum status)
 	 
 	 {
+		 
+		 log.info(" Cibil CibilStatus PATCH method mapping called...!");
 		 CibilEntity cibilEntity=service.updateCibilScoreStatus(cibilId,status);
 		 return new ResponseEntity<CibilEntity>(cibilEntity,HttpStatus.OK);
 		 

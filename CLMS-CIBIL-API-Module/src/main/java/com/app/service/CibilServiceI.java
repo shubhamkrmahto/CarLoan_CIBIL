@@ -15,6 +15,8 @@ public interface CibilServiceI {
 	public CibilEntity updateCibilScoreStatus(Integer cibilId, CibilStatusEnum status);
 
 	public CibilEntity updateCibilRemark(Integer cibilId, String cibilRemark);
+
+	void deleteCibilEnquiry(Integer id);
 	
 	
 	public Iterable<CibilEntity> findAll();

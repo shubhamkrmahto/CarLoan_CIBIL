@@ -52,7 +52,7 @@ public class CibilServiceImpl implements CibilServiceI {
 		ce.setStatus(CibilStatusEnum.PENDING);
 		ce.setCibilScoreDateTime(LocalDateTime.now());
 
-		log.info("Cibil Data has been saved successfully and Cibil id is : " + ce.getCibilId());
+		log.info("Cibil Data has been saved successfully ");
 		return cibilRepo.save(ce);
 	}
 
@@ -107,6 +107,17 @@ public class CibilServiceImpl implements CibilServiceI {
 		}
 		return null;
 	}
+
+
+	
+	@Override
+	public void deleteCibilEnquiry(Integer id) {
+		// TODO Auto-generated method stub
+		
+			cibilRepo.deleteById(id);		
+		}
+	
+	
 
 	@Override
 	public Iterable<CibilEntity> findAll() {

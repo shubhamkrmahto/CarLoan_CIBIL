@@ -34,13 +34,3 @@ public class CibilEntity {
 
 
 }
-
-
-
-/*
- {
-
-"cibilScore":450,
-"cibilRemark" :"Request submitted"
-}
- */

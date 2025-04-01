@@ -33,20 +33,6 @@ public class CibilController {
 		
 		return new ResponseEntity<String>("Your Cibil Data has been Registered Successfully.", HttpStatus.CREATED);  
 	}
-<<<<<<< HEAD
-	 @PutMapping("/updatecibil")	
-	   public ResponseEntity<String> updateCibilDetails(@RequestBody CibilEntity cibil){
-=======
-	
-	
-	@PutMapping("/updateCIBIL")	
-	  public ResponseEntity<String> updateCibilDetails(@RequestBody CibilEntity cibil){
->>>>>>> branch 'master' of https://github.com/shubhamkrmahto/CarLoan_CIBIL
-		   String msg = service.updateCibil(cibil);
-		   
-		   return new ResponseEntity<String>(msg,HttpStatus.OK);
-		   
-	   }
 
 	
 	@DeleteMapping("/deleteCIBIL/{id}")

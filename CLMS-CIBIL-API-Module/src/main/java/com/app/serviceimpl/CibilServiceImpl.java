@@ -29,11 +29,7 @@ public class CibilServiceImpl implements CibilServiceI {
 			  
 			return "Data Updated Successfully";
 		}
-<<<<<<< HEAD
-		return "Record not found";	
-=======
 		return "Invalid Id.";	
->>>>>>> branch 'master' of https://github.com/shubhamkrmahto/CarLoan_CIBIL
 	}
 	
 	@Override

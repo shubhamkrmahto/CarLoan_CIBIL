@@ -25,7 +25,7 @@ public class CibilController {
 	@Autowired
 	CibilServiceI service;
 	
-	@PostMapping("/saveCibil")
+	@PostMapping("/saveCIBIL")
 	public ResponseEntity<String> saveCibilData(@RequestBody CibilEntity  ce)
 	{
 		
@@ -36,8 +36,8 @@ public class CibilController {
 	}
 	
 	
-	 @PutMapping("/update-cibil")	
-	   public ResponseEntity<String> updateCibilDetails(@RequestBody CibilEntity cibil){
+	@PutMapping("/updateCIBIL")	
+	  public ResponseEntity<String> updateCibilDetails(@RequestBody CibilEntity cibil){
 		   String msg = service.updateCibil(cibil);
 		   
 		   return new ResponseEntity<String>(msg,HttpStatus.OK);
@@ -45,7 +45,7 @@ public class CibilController {
 	   }
 
 	
-	@DeleteMapping("/deleteCibilEnquiry/{id}")
+	@DeleteMapping("/deleteCIBIL/{id}")
 	 public ResponseEntity<String> deleteCibilData(@PathVariable ("id") Integer id)
 	 {
 			service.deleteCibilEnquiry(id);
@@ -54,18 +54,17 @@ public class CibilController {
 	 }
 
 	 
-	 @PatchMapping("change_CibilStatus/{cibilId}/{status}")
-	 public ResponseEntity<CibilEntity> onChangeCibilStatus(@PathVariable ("cibilId")Integer cibilId,
+	 @PatchMapping("updateStatus/{cibilId}/{status}")
+	 public ResponseEntity<CibilEntity> updateCIBILStatus(@PathVariable ("cibilId")Integer cibilId,
 			                                               @PathVariable ("status")CibilStatusEnum status)
 	 
 	 {
 		 CibilEntity cibilEntity=service.updateCibilScoreStatus(cibilId,status);
 		 return new ResponseEntity<CibilEntity>(cibilEntity,HttpStatus.OK);
-		 
 	
 	 }
 	 
-	 @PatchMapping("change_cibilScore/{cibilId}/{cibilScore}")
+	 @PatchMapping("updateCibilScore/{cibilId}/{cibilScore}")
 	 public ResponseEntity<CibilEntity> onChangeCibilScore(@PathVariable ("cibilId")Integer cibilId,
 			                                               @PathVariable ("cibilScore")Integer cibilScore)
 	 
@@ -74,7 +73,7 @@ public class CibilController {
 		 return new ResponseEntity<CibilEntity>(cibilEntity,HttpStatus.OK);	
 	 }
 	 
-	 @PatchMapping("change_cibilScore_remark/{cibilId}/{cibilRemark}")
+	 @PatchMapping("updateCIBILRemark/{cibilId}/{cibilRemark}")
 	 public ResponseEntity<CibilEntity> onChangeCibilcibilRemark(@PathVariable ("cibilId")Integer cibilId,
 			                                               @PathVariable ("cibilRemark")String cibilRemark)
 	 
@@ -84,7 +83,7 @@ public class CibilController {
 	 }
 
 	 
-	 @GetMapping("/getCibilAllData")
+	 	@GetMapping("/getCibilAllData")
 		public ResponseEntity<Iterable<CibilEntity>> getAllData()
 		{
 			Iterable<CibilEntity> allData =service.findAll();

@@ -8,15 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.app.entity.CibilEntity;
-
 import com.app.enums.CibilStatusEnum;
 import com.app.repo.CibilRepository;
 import com.app.service.CibilServiceI;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class CibilServiceImpl implements CibilServiceI {
@@ -47,8 +42,10 @@ public class CibilServiceImpl implements CibilServiceI {
 
 			return "Data Updated Successfully";
 		}
-		return null;
+
+		return "Invalid Id.";	
 	}
+
 
 	@Override
 	public CibilEntity save(CibilEntity ce) {

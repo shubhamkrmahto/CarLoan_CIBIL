@@ -32,11 +32,4 @@ public class CibilEntity {
 	private CibilStatusEnum status;
 	private String cibilRemark;
 
-
 }
-
-
-
-
- 
- 

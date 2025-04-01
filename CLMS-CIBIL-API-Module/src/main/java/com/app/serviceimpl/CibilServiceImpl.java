@@ -2,6 +2,7 @@ package com.app.serviceimpl;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,9 @@ public class CibilServiceImpl implements CibilServiceI {
 
 	private static final Logger log = LoggerFactory.getLogger(CibilServiceImpl.class);
 
+	
+	private final Random random = new Random();
+	
 	@Autowired
 	CibilRepository cibilRepo;
 
@@ -136,5 +140,14 @@ public class CibilServiceImpl implements CibilServiceI {
 
 		return cibilById.get();
 	}
+
+	@Override
+	public Integer generateCibil() {
+		
+		
+		return random.nextInt(300, 900);
+	}
+
+	
 
 }

@@ -162,4 +162,12 @@ public class CibilController {
 		return new ResponseEntity<CibilEntity>(cibil, HttpStatus.OK);
 	}
 
+	
+	@GetMapping("/generateCibil")
+	public ResponseEntity<Integer> generateCibil()
+	{
+		return new ResponseEntity<Integer>(service.generateCibil(),HttpStatus.OK);
+	}
+	
+	
 }

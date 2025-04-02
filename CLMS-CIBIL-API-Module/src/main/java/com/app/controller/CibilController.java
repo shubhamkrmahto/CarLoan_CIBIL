@@ -39,7 +39,6 @@ public class CibilController {
 	 @PutMapping("/update-cibil")	
 	   public ResponseEntity<String> updateCibilDetails(@RequestBody CibilEntity cibil){
 		   String msg = service.updateCibil(cibil);
-		   
 		   return new ResponseEntity<String>(msg,HttpStatus.OK);
 		   
 	   }
@@ -50,7 +49,6 @@ public class CibilController {
 	 {
 			service.deleteCibilEnquiry(id);
 			return new ResponseEntity<String>("Delete Your cibil Field Successfully...!",HttpStatus.OK);
-
 	 }
 
 	 
@@ -61,8 +59,6 @@ public class CibilController {
 	 {
 		 CibilEntity cibilEntity=service.updateCibilScoreStatus(cibilId,status);
 		 return new ResponseEntity<CibilEntity>(cibilEntity,HttpStatus.OK);
-		 
-	
 	 }
 	 
 	 @PatchMapping("change_cibilScore/{cibilId}/{cibilScore}")

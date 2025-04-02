@@ -95,11 +95,8 @@ public class CibilServiceImpl implements CibilServiceI {
 		return null;
 	}
 
-	
 	@Override
 	public void deleteCibilEnquiry(Integer id) {
-		// TODO Auto-generated method stub
-		
 			cibilRepo.deleteById(id);		
 		}
 	

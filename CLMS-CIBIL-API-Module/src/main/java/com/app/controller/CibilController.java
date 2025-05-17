@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,32 +24,52 @@ import com.app.service.CibilServiceI;
 @RestController
 @RequestMapping("/cibil")
 public class CibilController {
+
+	private static final Logger log = LoggerFactory.getLogger(CibilController.class);
+
 	@Autowired
 	CibilServiceI service;
 	
-	@PostMapping("/saveCIBIL")
-	public ResponseEntity<String> saveCibilData(@RequestBody CibilEntity  ce)
-	{
-		
+	@PostMapping("/saveCibil")
+	public ResponseEntity<String> saveCibilData(@RequestBody CibilEntity ce) {
+		log.info("Cibil Controller post mapping called...!");
 		CibilEntity cibil = service.save(ce);
-		System.out.println(cibil);
 		
-		return new ResponseEntity<String>("Your Cibil Data has been Registered Successfully.", HttpStatus.CREATED);  
+		log.info("cibil : " + cibil);
+
+		return new ResponseEntity<String>("Your Cibil Data has been Registered Successfully.", HttpStatus.CREATED);
 	}
 	
-	
-	@PutMapping("/updateCIBIL")	
-	  public ResponseEntity<String> updateCibilDetails(@RequestBody CibilEntity cibil){
-		   String msg = service.updateCibil(cibil);
-		   
-		   return new ResponseEntity<String>(msg,HttpStatus.OK);
-		   
-	   }
+
+	@PutMapping("/update-cibil")
+	public ResponseEntity<String> updateCibilDetails(@RequestBody CibilEntity cibil) {
+
+		log.info("Cibil PUT mapping called");
+
+		String msg = service.updateCibil(cibil);
+
+		return new ResponseEntity<String>(msg, HttpStatus.OK);
+
+	}
+
+	@PatchMapping("change_cibilScore/{cibilId}/{cibilScore}")
+	public ResponseEntity<CibilEntity> onChangeCibilScore(@PathVariable("cibilId") Integer cibilId,
+			@PathVariable("cibilScore") Integer cibilScore)
+
+	{
+		log.info(" Cibil CibilScore PATCH method mapping called...!");
+
+		CibilEntity cibilEntity = service.updateCibilScore(cibilId, cibilScore);
+		return new ResponseEntity<CibilEntity>(cibilEntity, HttpStatus.OK);
+
+	}
 
 	
 	@DeleteMapping("/deleteCIBIL/{id}")
 	 public ResponseEntity<String> deleteCibilData(@PathVariable ("id") Integer id)
 	 {
+		
+			log.info("Cibil DELETE method called...!");
 			service.deleteCibilEnquiry(id);
 			return new ResponseEntity<String>("Delete Your cibil Field Successfully...!",HttpStatus.OK);
 
@@ -59,18 +81,11 @@ public class CibilController {
 			                                               @PathVariable ("status")CibilStatusEnum status)
 	 
 	 {
+		 
+		 log.info(" Cibil CibilStatus PATCH method mapping called...!");
 		 CibilEntity cibilEntity=service.updateCibilScoreStatus(cibilId,status);
 		 return new ResponseEntity<CibilEntity>(cibilEntity,HttpStatus.OK);
 	
-	 }
-	 
-	 @PatchMapping("updateCibilScore/{cibilId}/{cibilScore}")
-	 public ResponseEntity<CibilEntity> onChangeCibilScore(@PathVariable ("cibilId")Integer cibilId,
-			                                               @PathVariable ("cibilScore")Integer cibilScore)
-	 
-	 {
-		 CibilEntity cibilEntity=service.updateCibilScore(cibilId,cibilScore);
-		 return new ResponseEntity<CibilEntity>(cibilEntity,HttpStatus.OK);	
 	 }
 	 
 	 @PatchMapping("updateCIBILRemark/{cibilId}/{cibilRemark}")
@@ -82,26 +97,33 @@ public class CibilController {
 		 return new ResponseEntity<CibilEntity>(cibilEntity,HttpStatus.OK);
 	 }
 
-	 
-	 	@GetMapping("/getCibilAllData")
-		public ResponseEntity<Iterable<CibilEntity>> getAllData()
-		{
-			Iterable<CibilEntity> allData =service.findAll();
-			
-			return new ResponseEntity<Iterable<CibilEntity>>(allData,HttpStatus.OK);
-		}
+
+	@GetMapping("/getCibilSingleData/{cibilId}")
+	public ResponseEntity<CibilEntity> getSingleData(@PathVariable("cibilId") Integer id) {
 		
-		@GetMapping("/getCibilSingleData/{cibilId}")
-		public ResponseEntity<CibilEntity> getSingleData(@PathVariable("cibilId")Integer id)
-		{
-			CibilEntity cibil=service.getSingleData(id);
-			
-			return new ResponseEntity<CibilEntity>(cibil, HttpStatus.OK);
-		}
-	 
-	 
-	 
-	 
-	 
-	 
+		log.info("Cibil GETSINGLE METHOD called");
+		
+		CibilEntity cibil = service.getSingleData(id);
+
+		return new ResponseEntity<CibilEntity>(cibil, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getCibilAllData")
+	public ResponseEntity<Iterable<CibilEntity>> getAllData() {
+	
+		log.info("Cibil GETALL METHOD called");
+		
+		Iterable<CibilEntity> allData = service.findAll();
+
+		return new ResponseEntity<Iterable<CibilEntity>>(allData, HttpStatus.OK);
+	}
+
+	
+	@GetMapping("/generateCibil")
+	public ResponseEntity<Integer> generateCibil()
+	{
+		return new ResponseEntity<Integer>(service.generateCibil(),HttpStatus.OK);
+	}
+	
+	
 }

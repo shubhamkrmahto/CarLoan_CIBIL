@@ -23,4 +23,6 @@ public interface CibilServiceI {
 
 	public CibilEntity getSingleData(Integer id);
 	
+	public Integer generateCibil();
+	
 }

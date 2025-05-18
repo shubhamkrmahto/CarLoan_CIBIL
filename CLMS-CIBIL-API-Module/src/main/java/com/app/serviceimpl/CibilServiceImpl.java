@@ -32,11 +32,12 @@ public class CibilServiceImpl implements CibilServiceI {
 		if (byId.isPresent()) {
 			CibilEntity entity = byId.get();
 			entity.setCibilScore(cibil.getCibilScore());
-			entity.setCibilScoreDateTime(cibil.getCibilScoreDateTime());
+			entity.setCibilScoreDateTime(LocalDateTime.now());
 			entity.setStatus(cibil.getStatus());
 			entity.setCibilRemark(cibil.getCibilRemark());
 
 			cibilRepo.save(entity);
+
 
 			log.info("Cibil Data has been updated successfully for Cibil id = " + cibil.getCibilId());
 

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.entity.CibilEntity;
@@ -30,6 +29,10 @@ public class CibilController {
 	@Autowired
 	CibilServiceI service;
 	
+	@GetMapping("/test")
+	public String testAPIGateway() {
+		return "Testing API Gateway";
+	}
 	@PostMapping("/saveCibil")
 	public ResponseEntity<String> saveCibilData(@RequestBody CibilEntity ce) {
 		log.info("Cibil Controller post mapping called...!");

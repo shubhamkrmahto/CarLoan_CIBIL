@@ -26,7 +26,7 @@ public class CibilEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer cibilId;
 	private Integer cibilScore;
-	@DateTimeFormat
+	@DateTimeFormat()
 	private LocalDateTime cibilScoreDateTime;
 	@Enumerated(EnumType.STRING)
 	private CibilStatusEnum status;
